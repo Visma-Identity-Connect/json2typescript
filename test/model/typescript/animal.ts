@@ -3,8 +3,8 @@ import { JsonObject, JsonProperty } from "../../../src/json2typescript/json-conv
 import { DateConverter } from "./date-converter";
 import { Human } from "./human";
 
-@JsonObject("Animal")
-export class Animal {
+@JsonObject("BaseAnimal")
+export class BaseAnimal {
 
     @JsonProperty("name", String)
     name: string = "";
@@ -14,8 +14,11 @@ export class Animal {
 
     @JsonProperty("birthdate", DateConverter, true)
     birthdate: Date | null = null;
+}
 
-    @JsonProperty("friends", [Animal], true)
+// We cannot use the friends property with `Animal` directly as a recursive reference as it's not allowed - ts(2449)
+@JsonObject("Animal")
+export class Animal extends BaseAnimal {
+    @JsonProperty("friends", [BaseAnimal], true)
     friends: Animal[] | null = null;
-
 }

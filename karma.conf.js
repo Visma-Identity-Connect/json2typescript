@@ -1,4 +1,6 @@
-module.exports = function (config) {
+import { types } from 'node:util';
+
+export default function (config) {
     config.set({
         //logLevel: config.LOG_DEBUG,
         plugins: [
@@ -32,9 +34,13 @@ module.exports = function (config) {
                 'html': 'coverage'
             },
             compilerOptions: {
-                target: 'es5',
-                lib: ['es6', 'dom']
-            }
+                target: 'ES5',
+                lib: [ 'ES6', 'DOM' ],
+                types: [ 'node', 'jasmine' ],
+                emitDecoratorMetadata: false,
+                experimentalDecorators: false
+            },
+            exclude: ["node_modules"]
         },
         browserConsoleLogOptions: {
             terminal: true,

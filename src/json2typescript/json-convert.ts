@@ -954,7 +954,7 @@ export class JsonConvert {
                 });
             }
 
-        } catch (e) {
+        } catch (e: any) {
             throw new Error(
                 "Fatal error in JsonConvert. " +
                 "Failed to map the JavaScript instance of class \"" + instance[Settings.CLASS_IDENTIFIER] + "\" to JSON because of a type error.\n\n" +
@@ -1018,7 +1018,7 @@ export class JsonConvert {
             instance[classPropertyName] = customConverter !== null ?
                 customConverter.deserialize(jsonValue) :
                 this.convertProperty(expectedJsonType, jsonValue, convertingMode);
-        } catch (e) {
+        } catch (e: any) {
             throw new Error(
                 "Fatal error in JsonConvert. " +
                 "Failed to map the JSON object to the class \"" + instance[Settings.CLASS_IDENTIFIER] + "\" because of a type error.\n\n" +
